@@ -32,8 +32,11 @@ public class Endereco {
     @Column(name = "complemento", length = 200)
     private String complemento;
 
-    @OneToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+//    @OneToOne
+//    @JoinColumn(name = "cliente_id")
+//    private Cliente cliente;
+
+    @Column(name = "cliente_id", length = 200)
+    private Integer clienteId;
 
 }

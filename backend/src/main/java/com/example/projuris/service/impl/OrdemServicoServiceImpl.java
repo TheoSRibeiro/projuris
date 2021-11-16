@@ -9,6 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,19 +55,43 @@ public class OrdemServicoServiceImpl implements OrdemServicoService {
     }
 
 
-    @Override
-    public OrdemServico inicioServico(OrdemServico ordemServico) {
-        Optional<OrdemServico> optionalOrdemServico = findById(ordemServico.getId());
 
-        System.out.println("optional Ordem Servico: "+optionalOrdemServico);
+    @Override
+    public Optional<OrdemServico> iniciarServico(Integer id) {
+        Optional<OrdemServico> optionalOrdemServico = findById(id);
 
         if (optionalOrdemServico.isEmpty()) {
             throw new EmptyResultDataAccessException(1);
         }
         optionalOrdemServico.get().setDataInicioServico(LocalDateTime.now());
-        optionalOrdemServico.get().setId(ordemServico.getId());
-        return ordemServicoRepository.save(optionalOrdemServico.get());
+        optionalOrdemServico.get().setIsPendente(false);
+        ordemServicoRepository.save(optionalOrdemServico.get());
+        return optionalOrdemServico;
+    }
 
+    @Override
+    public List<Optional<OrdemServico>>findServicosIniciadosFuncionarioId(Integer id){
+
+        List<Optional<OrdemServico>> lista = ordemServicoRepository.findServicosIniciadosFuncionarioId(id);
+        return lista;
+    }
+
+    @Override
+    public Optional<OrdemServico> finalizarServico(Integer id) {
+        Optional<OrdemServico> optionalOrdemServico = findById(id);
+
+        if (optionalOrdemServico.isEmpty()) {
+            throw new EmptyResultDataAccessException(1);
+        }
+        optionalOrdemServico.get().setDataTerminoServico(LocalDateTime.now());
+        ordemServicoRepository.save(optionalOrdemServico.get());
+        return optionalOrdemServico;
+    }
+
+    @Override
+    public List<Optional<OrdemServico>>findServicosFinalizadosFuncionarioId(Integer id){
+        List<Optional<OrdemServico>> lista = ordemServicoRepository.findServicosFinalizadosFuncionarioId(id);
+        return lista;
     }
 
 

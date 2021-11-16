@@ -27,17 +27,17 @@ public class Cliente {
     @Column(name = "email")
     private String email;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "cliente")
-    private Endereco endereco;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "cliente")
-    private List<Equipamento> equipamentos = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "cliente")
-    private OrdemServico ordemServico;
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "cliente")
+//    private Endereco endereco;
+//
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "cliente")
+//    private List<Equipamento> equipamentos = new ArrayList<>();
+//
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "cliente")
+//    private OrdemServico ordemServico;
 
 
 }

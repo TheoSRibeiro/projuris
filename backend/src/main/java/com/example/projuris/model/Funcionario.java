@@ -23,7 +23,8 @@ public class Funcionario {
     @Column(name = "matricula", nullable = false)
     private String matricula;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "funcionario")
-    private List<OrdemServico> ordemServico;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "funcionario")
+//    private List<OrdemServico> ordemServico;
+
 }

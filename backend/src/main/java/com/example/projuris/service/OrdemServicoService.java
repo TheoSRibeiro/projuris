@@ -14,7 +14,13 @@ public interface OrdemServicoService {
 
     OrdemServico insert (OrdemServico ordemServico);
 
-    OrdemServico inicioServico(OrdemServico ordemServico);
+    Optional<OrdemServico> iniciarServico(Integer id);
+
+    List<Optional<OrdemServico>>findServicosIniciadosFuncionarioId(Integer id);
+
+    List<Optional<OrdemServico>>findServicosFinalizadosFuncionarioId(Integer id);
+
+    Optional<OrdemServico> finalizarServico(Integer id);
 
     OrdemServico update(OrdemServico ordemServico);
 }

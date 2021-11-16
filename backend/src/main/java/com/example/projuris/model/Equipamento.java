@@ -25,12 +25,16 @@ public class Equipamento {
     @Column(name = "problema", nullable = false)
     private String problema;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+//    @ManyToOne
+//    @JoinColumn(name = "cliente_id")
+//    private Cliente cliente;
 
-    @OneToOne(mappedBy = "equipamento")
-    @JsonIgnore
-    private OrdemServico ordemServico;
+//    @OneToOne(mappedBy = "equipamento")
+//    @JsonIgnore
+//    private OrdemServico ordemServico;
+
+    @Column(name = "cliente_id", nullable = false)
+    private Integer clienteId;
+
 
 }

@@ -13,5 +13,11 @@ import java.util.Optional;
 public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Integer> {
 
     @Query(value = "SELECT * FROM ordem_servico os WHERE os.funcionario_id = :funcionarioId AND is_pendente = 'true'", nativeQuery = true)
-    public List<Optional<OrdemServico>> findByFuncionarioId(@Param("funcionarioId") Integer funcionarioId);
+    List<Optional<OrdemServico>> findByFuncionarioId(@Param("funcionarioId") Integer funcionarioId);
+
+    @Query(value = "SELECT * FROM ordem_servico os WHERE os.funcionario_id = :funcionarioId AND is_pendente = 'false' AND data_termino_servico is null", nativeQuery = true)
+    List<Optional<OrdemServico>> findServicosIniciadosFuncionarioId(@Param("funcionarioId") Integer funcionarioId);
+
+    @Query(value = "SELECT * FROM ordem_servico os WHERE os.funcionario_id = :funcionarioId AND data_termino_servico is not null", nativeQuery = true)
+    List<Optional<OrdemServico>> findServicosFinalizadosFuncionarioId(@Param("funcionarioId") Integer funcionarioId);
 }
